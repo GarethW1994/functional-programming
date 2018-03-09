@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Functional Programming</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <center>
+        <h1>Map()</h1>
+    </center>
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                See Output Below:
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Input</th>
+                            <th scope="col">Process</th>
+                            <th scope="col">Output</th>
+                        </tr>
+                    </thead>
+                    <tbody class="output"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <form action="">
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="csnumbers" placeholder="Enter Comma Seperated Numbers..." aria-label="Numbers" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" id="process" type="button">Sumbit</button>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="squareroot" id="squareroot" name="operations">
+                    <label class="form-check-label" for="squareroot">
+                              Squareroot
+                            </label>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="sum" id="sum" name="operations">
+                    <label class="form-check-label" for="sum">
+                                  Sum
+                                </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- link map function -->
+    <script src="./js/map.js"></script>
+</body>
+
+</html>

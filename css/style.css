@@ -1,0 +1,24 @@
+body {
+    margin: 10px;
+    height: auto;
+}
+
+.red {
+    color: red;
+    padding-left: 20px;
+}
+
+.blue {
+    color: blue;
+    padding-left: 20px;
+}
+
+.green {
+    color: green;
+    padding-left: 20px;
+}
+
+.orange {
+    color: orange;
+    padding-left: 20px;
+}
