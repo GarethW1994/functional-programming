@@ -1,36 +1,3 @@
-var someArray = [4, 9, 16],
-    mysum = 0,
-    avg = 0,
-    highest = 0,
-    sqrtArray = [];
-
-// map function
-sqrtArray = someArray.map(Math.sqrt);
-someArray.map((num) => { mysum = mysum + num });
-avg = Math.round(mysum / someArray.length);
-
-someArray.map(getMax);
-
-function getMax(num, current) {
-    let cVal = num;
-    let nVal = someArray[current + 1] || 0;
-
-    highest = Math.max(cVal, nVal);
-}
-
-// $('.output').append("<tr><td>" + "Math.sum()" + "</td></tr>");
-
-function appendOutput(input, process, output) {
-    console.log(input, process, output)
-    $('.output').append("<tr>" + "<td>" + input + "</td>" + "<td>" + process + "</td>" + "<td>" + output + "</td>" + "</tr>");
-}
-
-appendOutput("Sqrt", "Math.sqrt()", sqrtArray);
-appendOutput("Sum", "sum += num", mysum);
-appendOutput("Avg", "sum / array.length", avg);
-appendOutput("Max", "Math.max()", highest);
-
-
 $('#process').on('click', () => {
     // get input
     const numbers = $('#csnumbers').val();
@@ -87,16 +54,64 @@ const processOperation = (listOfOperations, listOfNumbers) => {
 }
 
 const callRespectiveFunctions = (methods, numbers) => {
-    let value = methods[0];
+    const callMethods = (index, method) => method(numbers);
 
-    console.log(value(numbers))
-}
+    const makeMethodCalls = methods =>
+        methods.map(callMethods)
+
+    const outputs = makeMethodCalls(methods);
+
+    buildTable(outputs);
+};
 
 const squareroot = (numberList) => {
-    console.log(numberList)
-    console.log(Math.max(numberList))
+    const sqrt = numberList.map((num) => Number(Math.sqrt(num).toFixed(0)));
+
+    return { "sqrt": sqrt, process: "Math.sqrt()" };
+};
+
+
+const sum = (numberList) => {
+    let total = 0;
+
+    numberList.map((num) => {
+        return total += num
+    });
+
+    return { "sum": total, process: "total += number" };
+};
+
+const avg = (numberList) => {
+    const total = sum(numberList);
+    const avg = Math.round(total.sum / numberList.length);
+
+    return { "avg": avg, process: "sum / array.length" };
+};
+
+const max = (numberList) => {
+    let highest = 0;
+    const max = numberList.map((num, current) => {
+        let cVal = num;
+        let nVal = numberList[current + 1] || 0;
+
+        return highest = Math.max(cVal, nVal);
+    });
+
+    return { "max": highest, process: "Math.max()" };
 }
 
-const sum = () => {
-    console.log('sum method running')
-}
+const buildTable = (content) => {
+    const eachMethod = methods =>
+        methods.map((index, method) => {
+            let key = Object.keys(method);
+            let output = method[key];
+            let input = key[index] !== undefined ? key[index].charAt(0).toUpperCase() : "";
+            // appendOutput(input, method.process, output);
+        });
+    eachMethod(content);
+};
+
+const appendOutput = (input, process, output) => {
+    // $('.output').text("");
+    $('.output').append("<tr>" + "<td>" + input + "</td>" + "<td>" + process + "</td>" + "<td>" + output + "</td>" + "</tr>");
+};
