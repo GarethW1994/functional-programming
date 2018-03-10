@@ -1,10 +1,12 @@
 $('#process').on('click', () => {
+    $(".alert").addClass('hidden')
+
     // get input
     const numbers = $('#csnumbers').val();
     const operations = $('input[name="operations"]:checked');
 
     // check if the input is valid
-    const valid = onInputCheck(numbers) ? true : alert("Something Went Horribly Wrong!");
+    const valid = onInputCheck(numbers) ? true : $(".alert").removeClass('hidden');
 
     // if the input was valid split the numbers
     const splitList = valid == true ? splitNumbers(numbers) : false;
@@ -16,7 +18,7 @@ $('#process').on('click', () => {
     const currentOperations = onGetOperations(operations);
 
     // check if a operation was selected
-    const selectedOperations = currentOperations["length"] > 0 ? processOperation(currentOperations, newNumericList) : alert('Please Select A Operation');
+    const selectedOperations = currentOperations["length"] > 0 ? processOperation(currentOperations, newNumericList) : $(".alert").removeClass('hidden');
 });
 
 const onGetOperations = (checkboxes) => {
@@ -101,17 +103,24 @@ const max = (numberList) => {
 }
 
 const buildTable = (content) => {
+    $('.output').text("");
+
     const eachMethod = methods =>
         methods.map((index, method) => {
             let key = Object.keys(method);
-            let output = method[key];
-            let input = key[index] !== undefined ? key[index].charAt(0).toUpperCase() : "";
-            // appendOutput(input, method.process, output);
+            let firstKey = key[0];
+            let secondKey = key[1];
+
+
+            let input = firstKey.charAt(0).toUpperCase() + firstKey.slice(1);
+            let process = method[secondKey];
+            let output = method[firstKey];
+
+            appendOutput(input, process, output);
         });
     eachMethod(content);
 };
 
 const appendOutput = (input, process, output) => {
-    // $('.output').text("");
     $('.output').append("<tr>" + "<td>" + input + "</td>" + "<td>" + process + "</td>" + "<td>" + output + "</td>" + "</tr>");
 };
