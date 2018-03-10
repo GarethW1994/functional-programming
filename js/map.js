@@ -111,11 +111,11 @@ const buildTable = (content) => {
             let firstKey = key[0];
             let secondKey = key[1];
 
-
             let input = firstKey.charAt(0).toUpperCase() + firstKey.slice(1);
             let process = method[secondKey];
             let output = method[firstKey];
 
+            // Call append output function
             appendOutput(input, process, output);
         });
     eachMethod(content);
